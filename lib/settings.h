@@ -375,6 +375,9 @@ public:
     /** @brief Keep comments in preprocessed output */
     bool keepComments{};
 
+    /** @brief -P: ignore #line / # <num> "file" directives, do not let them affect location tracking */
+    bool ignoreLineDirectives{};
+
     /** @brief Is --quiet given? */
     bool quiet{};
 

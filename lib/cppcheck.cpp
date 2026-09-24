@@ -899,6 +899,7 @@ unsigned int CppCheck::checkBuffer(const FileWithDetails &file, const std::strin
     const auto f = [&file, data, size, this](std::vector<std::string>& files, simplecpp::OutputList* outputList) {
         simplecpp::DUI dui;
         dui.std = mSettings.standards.getStdForLanguage(file.lang());
+        dui.ignoreLineDirectives = mSettings.ignoreLineDirectives; // -P
         return simplecpp::TokenList{{data, size}, files, file.spath(), dui, outputList};
     };
     return checkInternal(file, cfgname, f);
@@ -909,6 +910,7 @@ unsigned int CppCheck::checkFile(const FileWithDetails& file, const std::string 
     const auto f = [&file, this](std::vector<std::string>& files, simplecpp::OutputList* outputList) {
         simplecpp::DUI dui;
         dui.std = mSettings.standards.getStdForLanguage(file.lang());
+        dui.ignoreLineDirectives = mSettings.ignoreLineDirectives; // -P
         return simplecpp::TokenList{file.spath(), files, dui, outputList};
     };
     return checkInternal(file, cfgname, f);

@@ -276,6 +276,7 @@ namespace simplecpp {
         std::string std;
         bool clearIncludeCache{};
         bool removeComments{}; /** remove comment tokens from included files */
+        bool ignoreLineDirectives{}; /** -P: do not let #line directives affect location tracking */
     };
 
     /** List of tokens. */

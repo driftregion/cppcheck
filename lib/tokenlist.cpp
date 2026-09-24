@@ -356,6 +356,7 @@ bool TokenList::createTokensFromBufferInternal(const char* data, size_t size, co
     simplecpp::OutputList outputList;
     simplecpp::DUI dui;
     dui.std = mSettings.standards.getStdForLanguage(mLang);
+    dui.ignoreLineDirectives = mSettings.ignoreLineDirectives; // -P
     simplecpp::TokenList tokens({data, size}, mFiles, file0, dui, &outputList);
 
     createTokens(std::move(tokens));

@@ -809,6 +809,7 @@ static simplecpp::DUI createDUI(const Settings &mSettings, const std::string &cf
     dui.undefined = mSettings.userUndefs; // -U
     dui.includePaths = mSettings.includePaths; // -I
     dui.includes = mSettings.userIncludes;  // --include
+    dui.ignoreLineDirectives = mSettings.ignoreLineDirectives; // -P
     if (lang == Standards::Language::CPP) {
         dui.std = mSettings.standards.stdValueCPP;
         if (dui.std.empty()) {

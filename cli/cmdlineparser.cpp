@@ -516,6 +516,11 @@ CmdLineParser::Result CmdLineParser::parseFromArgs(int argc, const char* const a
             mSettings.userUndefs.insert(std::move(undef));
         }
 
+        // -P: Ignore #line directives when tracking locations
+        else if (std::strcmp(argv[i], "-P") == 0) {
+            mSettings.ignoreLineDirectives = true;
+        }
+
         else if (std::strncmp(argv[i], "--addon=", 8) == 0)
             mSettings.addons.emplace(argv[i]+8);
 
@@ -1996,6 +2001,12 @@ void CmdLineParser::printHelp() const
         "                         or Visual Studio Project (*.vcxproj) you can limit\n"
         "                         the configuration cppcheck should check.\n"
         "                         For example: '--project-configuration=Release|Win32'\n"
+        "    -P                   Ignore #line / # <num> \"file\" directives. Use this\n"
+        "                         if the code being checked contains #line directives\n"
+        "                         that should not affect reported file/line locations,\n"
+        "                         e.g. inside a #ifdef/#endif block that is excluded by\n"
+        "                         -D/-U -- #line is otherwise honored regardless of\n"
+        "                         whether the block containing it is active.\n"
         "    -q, --quiet          Do not show progress reports.\n"
         "                         Note that this option is not mutually exclusive with --verbose.\n"
         "    -rp=<paths>, --relative-paths=<paths>\n"
